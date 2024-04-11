@@ -96,35 +96,40 @@ export default ko;
 - 설정 파일 구성 : src/i18n.js
 
 ```javascript
-import i18n from 'il18next';
-import { initReactI18next } from "react-i18next";
-import ko from './Langs/ko';  //ko/index.js 와 같음   알아서 index.js가 따라옴(?)
-import en from './Langs/en';  // 이 친구도 같음
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import ko from './langs/ko';
+import en from './langs/en';
 
 const resources = {
-    en: {
-        translation : en,
-    },
-    ko : {
-        translation: ko,
-    },
+  en: {
+    translation: en,
+  },
+  ko: {
+    translation: ko,
+  },
 };
 
 i18n.use(initReactI18next).init({
-    resources //resources:resources 이름과 값이 같으면 한개만 적어도 된다!
-    lng : 'ko',
+  resources,
+  lng: 'ko',
 });
 ```
 
 - 설정 반영 : src/index.js
 
 ```javascript
-import './il8n';
+...
+
+import './i18n';
+
+...
+
 ```
 
 - 적용하기 : useTranslation 훅 / react-i18next
-  - t : 메세지 조회 함수
-  - i18n : 편의기능 객체, changeLanguate(...) : 언어 변경
+  - t : 메세지 조회 함수.
+  - i18n : 편의 기능 객체, changeLanguage(..) : 언어 변경
 
 ```jsx
 import { Helmet } from 'react-helmet-async';
@@ -132,6 +137,7 @@ import { useTranslation } from 'react-i18next';
 
 const App = () => {
   const { t, i18n } = useTranslation();
+
   return (
     <>
       <Helmet>
@@ -152,3 +158,59 @@ const App = () => {
 
 export default App;
 ```
+
+# 레이아웃 구성
+
+- src/layouts/MainLayout.js
+- src/outlines/Header.js
+- src/outlines/Footer.js
+
+# 라우팅 구성
+
+## 설정
+
+- src/index.js : BrowserRouter 컴포넌트로 감싸기
+
+```jsx
+...
+
+import { BrowserRouter } from 'react-router-dom';
+
+...
+
+root.render(
+  <React.StrictMode>
+    <HelmetProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </HelmetProvider>
+  </React.StrictMode>,
+);
+```
+
+## 회원
+
+- /member/join : 회원가입
+- /member/login : 로그인
+
+# 없는 페이지
+
+- - : 없는 페이지 - commons/pages/NotFound.js
+
+## 여러페이지
+
+ - class형 컴포넌트 - componentDidCatch 사용
+  - commons / pages / Error.js
+  - commons / components / ErrorDisplay.js
+
+
+
+
+
+
+
+
+
+
+  
