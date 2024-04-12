@@ -16,7 +16,6 @@ const App = () => {
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route index element={<Main />} /> {/* 메인 페이지 */}
-        
         {/* 회원 페이지 S */}
         <Route path="member">
           <Route path="join" element={<Join />} />
