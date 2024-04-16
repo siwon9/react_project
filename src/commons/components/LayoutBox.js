@@ -1,4 +1,4 @@
-import styled from ' styled-components';
+import styled from 'styled-components';
 import { color } from '../../styles/color';
 const { dark } = color;
 
